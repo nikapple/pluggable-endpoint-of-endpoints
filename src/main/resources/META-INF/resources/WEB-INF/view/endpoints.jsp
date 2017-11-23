@@ -4,14 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Spring MVC 3.1 Demo Endpoints</title>
-<link rel="stylesheet" href="<c:url value="/resources/blueprint/screen.css" />" type="text/css" media="screen, projection" />
-<link rel="stylesheet" href="<c:url value="/resources/blueprint/print.css" />" type="text/css" media="print" />
-<!--[if lt IE 8]><link rel="stylesheet" href="<c:url value="/resources/blueprint/ie.css" />" type="text/css" media="screen, projection"><![endif]-->
+<title>Application Endpoints</title>
 </head>
 <body>
   <div class="container">
-    <h1>Spring MVC 3.1 Demo Endpoints</h1>
+    <h1>Application Endpoints</h1>
     <c:forEach items="${handlerMethods}" var="entry">
       <div>
         <hr>
