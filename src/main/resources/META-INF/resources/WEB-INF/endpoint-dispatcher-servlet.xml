@@ -16,6 +16,8 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+	<mvc:resources mapping="/resources/**" location="classpath:/META-INF/resources/" />
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
