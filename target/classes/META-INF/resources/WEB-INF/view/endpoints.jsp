@@ -69,5 +69,8 @@
       </div>
     </c:forEach>
   </div>
+	<div id="endpoint-details-container">
+		
+	</div>
 </body>
 </html>

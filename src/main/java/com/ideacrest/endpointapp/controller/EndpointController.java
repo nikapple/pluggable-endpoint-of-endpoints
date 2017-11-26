@@ -30,15 +30,23 @@ public class EndpointController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/endpoints", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE )
-	public Map<String,String> getEndpoints() {
-		Map<String,String> handlerMethodsJson = new HashMap<>();
-		Map<RequestMappingInfo, HandlerMethod> handlerMethodsMap = this.handlerMapping.getHandlerMethods();
+	public Map<String, Map<String,String>> getEndpoints() {
+		return getEndpointsJson(this.handlerMapping.getHandlerMethods());
+	}
 
+	private Map<String, Map<String,String>> getEndpointsJson(Map<RequestMappingInfo, HandlerMethod> handlerMethodsMap) {
+		Map<String, Map<String,String>> handlerMethodsJson = new HashMap<>();
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethodsMap.entrySet())
 		{
-			handlerMethodsJson.put(entry.getValue().toString(), entry.getKey().getPatternsCondition().getPatterns().toString());
+			Map<String,String> requestInfoMap = new HashMap<>();
+			requestInfoMap.put("patterns", entry.getKey().getPatternsCondition().getPatterns().toString());
+			requestInfoMap.put("requestMethod", entry.getKey().getMethodsCondition().getMethods().toString());
+			requestInfoMap.put("headers", entry.getKey().getHeadersCondition().getExpressions().toString());
+			requestInfoMap.put("params", entry.getKey().getParamsCondition().getExpressions().toString());
+			requestInfoMap.put("consumes", entry.getKey().getConsumesCondition().getExpressions().toString());
+			requestInfoMap.put("produces", entry.getKey().getProducesCondition().getExpressions().toString());
+			handlerMethodsJson.put(entry.getValue().toString(), requestInfoMap);
 		}
 		return handlerMethodsJson;
 	}
-	
 }

@@ -6,8 +6,21 @@ $(document).ready(function(){
 		type : 'GET',
 		dataType:'json',
 		success: function(response){
-			console.log("here");
-			console.log(response);
+			addEndpoints(response);
 		}
 	});
+	
+	function addEndpoints(endpointsMap)
+	{
+		var endpointList = $("<ul></ul>");
+		$.each(endpointsMap, function(name,requestInfoMap){
+			endpointList.append("<li>"+name+"</li>");
+			$.each(requestInfoMap, function(type,value){
+				endpointList.append("<li>"+type+" : "+value+"</li>");
+			});
+		});
+		$("#endpoint-details-container").append(endpointList);
+	}
+	
 });
+
