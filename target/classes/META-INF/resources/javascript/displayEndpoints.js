@@ -9,18 +9,27 @@ $(document).ready(function(){
 			addEndpoints(response);
 		}
 	});
-	
+
 	function addEndpoints(endpointsMap)
 	{
 		var endpointList = $("<ul></ul>");
 		$.each(endpointsMap, function(name,requestInfoMap){
-			endpointList.append("<li>"+name+"</li>");
+			var endpointListItem = $("<li></li>");
+			endpointListItem.append("<button class='endpoint-details-dropdown-button'>"+name+"</button>");
+			var dropdownEndpointDetails = $("<ul class='endpoint-details-dropdown-list'></ul>");
+			dropdownEndpointDetails.hide();
 			$.each(requestInfoMap, function(type,value){
-				endpointList.append("<li>"+type+" : "+value+"</li>");
+				dropdownEndpointDetails.append("<li>"+type+" : "+value+"</li>");
 			});
+			endpointListItem.append(dropdownEndpointDetails);
+			endpointList.append(endpointListItem);
 		});
 		$("#endpoint-details-container").append(endpointList);
 	}
-	
-});
 
+	$("#endpoint-details-container").on("click",".endpoint-details-dropdown-button",function(){
+		$(".endpoint-details-dropdown-list").hide();
+		$(this).parent().find(".endpoint-details-dropdown-list").show();
+	})
+
+});
