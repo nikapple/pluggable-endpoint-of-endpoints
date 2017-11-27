@@ -6,7 +6,7 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .endpoint-item{
@@ -14,7 +14,19 @@
 	font-family: "Times New Roman", Times, serif;
 }
 
-.endpoint-details-dropdown-list{
-	list-style-type: none;
-	padding: 10px 10px;
+.endpoint-details-dropdown-table
+{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #111;
 }
+
+.endpoint-details-dropdown-table th {
+    padding: 8px;
+    border: 1px solid #111;
+}
+
+.endpoint-details-dropdown-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.endpoint-details-dropdown-table tr:hover {background-color: #ddd;}

@@ -16,13 +16,13 @@ $(document).ready(function(){
 		var endpointList = $("<ul></ul>");
 		$.each(endpointsMap, function(name,requestInfoMap){
 			var endpointListItem = $("<li class='endpoint-item'></li>");
-			endpointListItem.append("<button class='endpoint-details-dropdown-button'>"+name+"</button>");
-			var dropdownEndpointDetails = $("<ul class='endpoint-details-dropdown-list'></ul>");
-			dropdownEndpointDetails.hide();
+			endpointListItem.append("<button class='endpoint-details-dropdown-button'>"+removeSquareBrackets(name)+"</button>");
+			var dropdownEndpointDetailsTable = $("<table class='endpoint-details-dropdown-table'></table>");
+			dropdownEndpointDetailsTable.hide();
 			$.each(requestInfoMap, function(type,value){
-				dropdownEndpointDetails.append("<li>"+type+" : "+value+"</li>");
+				dropdownEndpointDetailsTable.append("<tr><th>"+type+"</th><td>"+removeSquareBrackets(value)+"</td></tr>");
 			});
-			endpointListItem.append(dropdownEndpointDetails);
+			endpointListItem.append(dropdownEndpointDetailsTable);
 			endpointList.append(endpointListItem);
 		});
 		$("#endpoint-details-container").append(endpointList);
@@ -30,7 +30,13 @@ $(document).ready(function(){
 
 	//toggle endpoint details list
 	$("#endpoint-details-container").on("click",".endpoint-details-dropdown-button",function(){
-		$(this).parent().find(".endpoint-details-dropdown-list").toggle();
+		$(this).parent().find(".endpoint-details-dropdown-table").toggle();
 	})
+	
+	function removeSquareBrackets(stringVal){
+		if(stringVal.charAt(0)==='[')
+			return stringVal.slice(1,stringVal.length-1);
+		return stringVal;
+	}
 
 });
