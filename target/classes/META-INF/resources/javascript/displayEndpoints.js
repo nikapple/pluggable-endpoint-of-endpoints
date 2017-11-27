@@ -6,11 +6,12 @@ $(document).ready(function(){
 		type : 'GET',
 		dataType:'json',
 		success: function(response){
-			addEndpoints(response);
+			addEndpointsHtml(response);
 		}
 	});
 
-	function addEndpoints(endpointsMap)
+	//display endpoints response
+	function addEndpointsHtml(endpointsMap)
 	{
 		var endpointList = $("<ul></ul>");
 		$.each(endpointsMap, function(name,requestInfoMap){
@@ -27,8 +28,8 @@ $(document).ready(function(){
 		$("#endpoint-details-container").append(endpointList);
 	}
 
+	//toggle endpoint details list
 	$("#endpoint-details-container").on("click",".endpoint-details-dropdown-button",function(){
-		$(".endpoint-details-dropdown-list").hide();
 		$(this).parent().find(".endpoint-details-dropdown-list").toggle();
 	})
 
