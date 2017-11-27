@@ -14,7 +14,7 @@ $(document).ready(function(){
 	{
 		var endpointList = $("<ul></ul>");
 		$.each(endpointsMap, function(name,requestInfoMap){
-			var endpointListItem = $("<li></li>");
+			var endpointListItem = $("<li class='endpoint-item'></li>");
 			endpointListItem.append("<button class='endpoint-details-dropdown-button'>"+name+"</button>");
 			var dropdownEndpointDetails = $("<ul class='endpoint-details-dropdown-list'></ul>");
 			dropdownEndpointDetails.hide();
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
 	$("#endpoint-details-container").on("click",".endpoint-details-dropdown-button",function(){
 		$(".endpoint-details-dropdown-list").hide();
-		$(this).parent().find(".endpoint-details-dropdown-list").show();
+		$(this).parent().find(".endpoint-details-dropdown-list").toggle();
 	})
 
 });

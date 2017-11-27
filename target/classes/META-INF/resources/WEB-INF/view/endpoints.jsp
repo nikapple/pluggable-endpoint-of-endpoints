@@ -9,6 +9,7 @@
 	var ctx = "${pageContext.request.contextPath}"
 </script>
 <script src="resources/javascript/displayEndpoints.js"></script>
+<link rel="stylesheet" href="resources/css/displayEndpoints.css">
 <title>Application Endpoints</title>
 </head>
 <body>

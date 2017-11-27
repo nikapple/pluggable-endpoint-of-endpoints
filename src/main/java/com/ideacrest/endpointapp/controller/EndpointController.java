@@ -39,13 +39,14 @@ public class EndpointController {
 		for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : handlerMethodsMap.entrySet())
 		{
 			Map<String,String> requestInfoMap = new HashMap<>();
-			requestInfoMap.put("patterns", entry.getKey().getPatternsCondition().getPatterns().toString());
+			requestInfoMap.put("methodSignature", entry.getValue().toString());
 			requestInfoMap.put("requestMethod", entry.getKey().getMethodsCondition().getMethods().toString());
 			requestInfoMap.put("headers", entry.getKey().getHeadersCondition().getExpressions().toString());
 			requestInfoMap.put("params", entry.getKey().getParamsCondition().getExpressions().toString());
 			requestInfoMap.put("consumes", entry.getKey().getConsumesCondition().getExpressions().toString());
 			requestInfoMap.put("produces", entry.getKey().getProducesCondition().getExpressions().toString());
-			handlerMethodsJson.put(entry.getValue().toString(), requestInfoMap);
+			//pattern name and map for dropdown list
+			handlerMethodsJson.put(entry.getKey().getPatternsCondition().getPatterns().toString(), requestInfoMap);
 		}
 		return handlerMethodsJson;
 	}

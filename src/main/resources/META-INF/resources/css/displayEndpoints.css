@@ -1,0 +1,20 @@
+.endpoint-details-dropdown-button{
+	background-color: #777777; 
+    border: none;
+    color: white;
+    padding: 4px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.endpoint-item{
+	padding: 3px 1px;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.endpoint-details-dropdown-list{
+	list-style-type: none;
+	padding: 10px 10px;
+}
