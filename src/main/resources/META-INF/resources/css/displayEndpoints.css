@@ -24,7 +24,6 @@
 
 .endpoint-details-dropdown-table th {
     padding: 8px;
-    border: 1px solid #111;
 }
 
 .endpoint-details-dropdown-table tr:nth-child(even){background-color: #f2f2f2;}

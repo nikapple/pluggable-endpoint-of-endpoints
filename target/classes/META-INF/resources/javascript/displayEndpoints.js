@@ -17,12 +17,18 @@ $(document).ready(function(){
 		$.each(endpointsMap, function(name,requestInfoMap){
 			var endpointListItem = $("<li class='endpoint-item'></li>");
 			endpointListItem.append("<button class='endpoint-details-dropdown-button'>"+removeSquareBrackets(name)+"</button>");
+			
+			var dropdownEndpointDetailsContainer = $('<div class="endpoint-details-dropdown-container"></div>');
+			dropdownEndpointDetailsContainer.hide();
+			
 			var dropdownEndpointDetailsTable = $("<table class='endpoint-details-dropdown-table'></table>");
-			dropdownEndpointDetailsTable.hide();
-			$.each(requestInfoMap, function(type,value){
-				dropdownEndpointDetailsTable.append("<tr><th>"+type+"</th><td>"+removeSquareBrackets(value)+"</td></tr>");
+			$.each(requestInfoMap, function(key,value){
+				var formattedData = removeSquareBrackets(value);
+				dropdownEndpointDetailsTable.append("<tr><th class="+key+" data-value="+formattedData+">"+key+"</th><td>"+formattedData+"</td></tr>");
 			});
-			endpointListItem.append(dropdownEndpointDetailsTable);
+			dropdownEndpointDetailsTable.append("<tr><th><button class='endpoint-test-button'>Test Endpoint</button></th></tr>");
+			dropdownEndpointDetailsContainer.append(dropdownEndpointDetailsTable);
+			endpointListItem.append(dropdownEndpointDetailsContainer);
 			endpointList.append(endpointListItem);
 		});
 		$("#endpoint-details-container").append(endpointList);
@@ -30,7 +36,7 @@ $(document).ready(function(){
 
 	//toggle endpoint details list
 	$("#endpoint-details-container").on("click",".endpoint-details-dropdown-button",function(){
-		$(this).parent().find(".endpoint-details-dropdown-table").toggle();
+		$(this).closest(".endpoint-item").find(".endpoint-details-dropdown-container").toggle();
 	})
 	
 	function removeSquareBrackets(stringVal){
